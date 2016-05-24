@@ -1,0 +1,74 @@
+\documentclass[a4paper, authoryear, longnamesfirst, 12pt]{elsarticle}
+\usepackage{etex}
+\usepackage{cmap}
+\usepackage[utf8]{inputenc}
+\usepackage{fourier, microtype}
+\usepackage[T1]{fontenc}
+\usepackage[]{amsmath, amsfonts, amsthm, bm, mathtools, commath, soul, booktabs}
+\usepackage{graphicx}
+\usepackage[bf, small, labelsep=period]{caption}
+\usepackage[english]{babel}
+\usepackage{enumerate}
+\usepackage[left=2.5cm, right=2.5cm, top=2.5cm, bottom=2.5cm]{geometry}
+\usepackage[colorlinks=true]{hyperref}
+\usepackage{color}
+\usepackage{longtable,array,ragged2e}
+\usepackage{cellspace}
+\usepackage{ulem}
+
+\makeatletter
+\def\th@plain{%
+  \thm@notefont{}% same as heading font
+  \itshape % body font
+}
+\def\th@definition{%
+  \thm@notefont{}% same as heading font
+  \normalfont % body font
+}
+\makeatother
+
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd{\ps@pprintTitle}{\footnotesize\itshape
+       Preprint submitted to \ifx\@journal\@empty Elsevier
+       \else\@journal\fi\hfill\today}{\hfill\footnotesize \null}{}{}
+\makeatother
+
+\begin{document}
+\frenchspacing
+\newcommand{\ftable}[3]{
+\renewcommand{\tabcolsep}{4.5pt}%
+\begin{table}[htb]
+	\centering
+\caption{#2}
+\label{#1}
+	\footnotesize
+	\scalebox{1}{
+	\begin{tabular}{l >{\hspace*{2pt}}l c *{7}{c}}
+		\toprule
+		\multicolumn{1}{l}{Est.} &
+		\multicolumn{1}{c}{$p$} &
+		\multicolumn{1}{c}{$k$} &
+		\multicolumn{1}{c}{$\bar k$} &
+		\multicolumn{1}{p{1.2cm}}{\centering IP} &
+		\multicolumn{1}{p{1.2cm}}{\centering PI} &
+		\multicolumn{1}{p{1.2cm}}{\centering Emp.} &
+		\multicolumn{1}{p{1.2cm}}{\centering CPI} &
+		\multicolumn{1}{p{1.2cm}}{\centering PCE} &
+		\multicolumn{1}{p{1.2cm}}{\centering PPI} \\
+		\midrule
+        \input{#3}
+\bottomrule
+\multicolumn{10}{m{13.5cm}}{\vspace*{2pt} Notes: 
+Bold indicates lowest value in a column, underlined indicates lowest value within each of the seven main scenarios and the benchmark models. The average number of included factors is $\bar k$. 
+The last row gives the RMSFE of the benchmark AR model.
+}\\
+	\end{tabular}}
+\end{table}
+\renewcommand{\tabcolsep}{6pt}%
+}
+
+\ftable{tab:forc12}{Forecasting results for the 12-month horizon.}{table12}
+\ftable{tab:forc6}{Forecasting results for the 6-month horizon.}{table6}
+\ftable{tab:forc24}{Forecasting results for the 24-month horizon.}{table24}
+\end{document}

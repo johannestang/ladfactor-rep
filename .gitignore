@@ -1,0 +1,15 @@
+.Rproj.user
+.Rhistory
+.RData
+inst/doc
+.*.swp
+app/rescache
+app/tex/*.aux
+app/tex/*.log
+app/tex/*.spl
+app/tex/*.out
+app/exclude
+app/*.RData
+app/run.*
+app/ladfactor-rep.o*
+app/ladfactor-rep.e*
